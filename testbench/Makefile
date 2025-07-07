@@ -1,4 +1,4 @@
-BENCH_NAME ?= gemm
+BENCH_NAME ?= va
 .DEFAULT_GOAL := $(BENCH_NAME)
 .PHONY: $(BENCH_NAME) $(BENCH_NAME)-kernel-compile clean
 

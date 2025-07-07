@@ -16,7 +16,7 @@ build_dir := "build"
 # Do a full build as if in CI. Only needed the first time you build the project.
 # Parameters: no-upmem enable-gpu enable-cuda enable-roc no-torch-mlir no-python-venv
 configure *ARGS:
-    .github/workflows/build-ci.sh -reconfigure {{ARGS}}
+    .github/workflows/build-local.sh -reconfigure {{ARGS}}
 
 # execute cmake -- this is only needed on the first build
 cmake *ARGS:
@@ -49,9 +49,9 @@ doNinja *ARGS:
 cinm-opt *ARGS: (doNinja "cinm-opt")
     #!/bin/sh
     if [ -t 1 ] ; then
-     {{source_directory()}}/{{build_dir}}/bin/cinm-opt {{ARGS}} | just highlight
+     cinnamon/{{build_dir}}/bin/cinm-opt {{ARGS}} | just highlight
     else
-     {{source_directory()}}/{{build_dir}}/bin/cinm-opt {{ARGS}}
+     cinnamon/{{build_dir}}/bin/cinm-opt {{ARGS}}
     fi
 
 # run build --first build needs cmake though
@@ -69,7 +69,7 @@ test: (doNinja "check-cinm-mlir")
 
 [no-cd]
 cinm-translate *ARGS: (doNinja "cinm-opt")
-    {{build_dir}}/bin/cinm-translate {{ARGS}}
+    cinnamon/{{build_dir}}/bin/cinm-translate {{ARGS}}
 
 cinm-opt-help: (cinm-opt "--help")
 

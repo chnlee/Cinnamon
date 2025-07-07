@@ -6,12 +6,15 @@ add_mlir_conversion_library(MLIRCinmToCnm
 
     DEPENDS
     CinmConversionPassIncGen
-
+    CnmIncGen
+    CimIncGen
+    
     LINK_COMPONENTS
     Core
 
     LINK_LIBS PUBLIC
     CnmIR
+    CimIR
     CinmUtils
     CinmIR
     MLIRDialectUtils
