@@ -8,6 +8,9 @@ cmake_minimum_required(VERSION 3.22)
 # Add custom modules to the search path.
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
+include(cmake/MLIRUtils.cmake)
+# include(MLIRUtils)
+
 project(cinm-mlir
     VERSION     0.2.0
     LANGUAGES   C CXX
@@ -70,6 +73,7 @@ list(APPEND CMAKE_MODULE_PATH "${LLVM_CMAKE_DIR}")
 include(TableGen)
 include(AddLLVM)
 include(AddMLIR)
+# include(MLIRTableGen)
 include(HandleLLVMOptions)
 
 # Apply target properties for LLVM/MLIR globally.
